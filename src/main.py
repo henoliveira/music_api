@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 api = FastAPI()
 
 CUR_DIR = getcwd()
-SONGS_DIR = f"{CUR_DIR}/src/songs"
+SONGS_DIR = f"{CUR_DIR}/public/songs"
 
 
 @api.get("/{file_name}")
