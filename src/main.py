@@ -2,6 +2,7 @@ from typing import List
 
 import uvicorn
 from fastapi import FastAPI, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 from .controllers.songsControllers import (
@@ -12,6 +13,16 @@ from .controllers.songsControllers import (
 )
 
 api = FastAPI()
+
+origins = ["*"]
+
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @api.get("/")
