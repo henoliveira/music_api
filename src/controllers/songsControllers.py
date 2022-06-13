@@ -18,5 +18,10 @@ def get_songs_names_list(
     return list(map(lambda file: _eyed3.load(directory + file).tag.title, file_list))
 
 
-def get_song_name_from_file(file: str, directory: str = _SONGS_DIR):
+def get_song_from_file(file: str, directory: str = _SONGS_DIR):
     return _eyed3.load(directory + file)
+
+
+def save_song_file(song_file, directory: str = _SONGS_DIR):
+    with open(f"{directory}{song_file.filename}", "wb") as file:
+        file.write(song_file.file.read())
