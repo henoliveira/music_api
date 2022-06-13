@@ -5,12 +5,12 @@ https://python-poetry.org/docs/
 
 Entrar na pasta do repositorio 
 
-rodar
+rodar  
 poetry install  
 
 rodar  
 poetry shell
 
-rodar
+rodar  
 uvicorn src.main:api --reload
 
