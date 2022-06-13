@@ -7,9 +7,9 @@ repos:
       - id: debug-statements
       - id: detect-private-key
       - id: end-of-file-fixer
-      # - id: no-commit-to-branch
-      #   args:
-      #     - --pattern=main
+      - id: no-commit-to-branch
+        args:
+          - --pattern=main
       - id: trailing-whitespace
 
   - repo: https://github.com/myint/autoflake
