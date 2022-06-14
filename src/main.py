@@ -5,12 +5,6 @@ from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
-from .controllers.songsControllers import (
-    get_files_names_list,
-    get_song_from_file,
-    get_songs_names_list,
-    save_song_file,
-)
 
 api = FastAPI()
 
