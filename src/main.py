@@ -1,12 +1,17 @@
-from typing import List
-
 import uvicorn
+import env
+
+from typing import List
 from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from supabase import Client, create_client as create_supabase
+from storage3 import create_client as create_bucket
 
 
 api = FastAPI()
+sb = create_supabase(env.sb_api_url, env.sb_headers)
+
 
 origins = ["*"]
 
@@ -19,24 +24,19 @@ api.add_middleware(
 )
 
 
-@api.get("/")
-async def get_songs_list() -> List[str]:
-    return get_songs_names_list(get_files_names_list())
+@api.get("/songs")
+def get_songs_list() -> List[str]:
+    pass
 
 
 @api.get("/song/{song_name}")
-async def get_song(song_name: str) -> FileResponse:
-    for file_name in get_files_names_list():
-        song = get_song_from_file(file_name)
-        if song.tag.title == song_name:
-            return FileResponse(path=song.path, media_type="audio/mp3")
-    raise HTTPException(status_code=404, detail="Song not found")
+def get_song(song_name: str) -> FileResponse:
+    pass
 
 
 @api.post("/song")
-async def upload_song(file: UploadFile):
-    save_song_file(file)
-    return file
+def upload_song(file: UploadFile):
+    pass
 
 
 if __name__ == "__main__":
