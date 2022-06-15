@@ -1,0 +1,6 @@
+eyed3
+fastapi
+python-multipart
+storage3
+uvicorn
+supabase
