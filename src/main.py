@@ -1,6 +1,5 @@
 import eyed3
 import uvicorn
-import env
 
 from typing import Dict, List, Any
 from fastapi import FastAPI, HTTPException
@@ -8,11 +7,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client as create_supabase
 from storage3 import create_client as create_bucket
 
+# Env
+sb_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnbWpkZ25ieXh4dWptdWZpZWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTUyNDUyMTEsImV4cCI6MTk3MDgyMTIxMX0.buDTTbi9zcsYrCIhKHv3_DcF7hO3AwCwqhDsfp66ozQ"
+sb_url = "https://rgmjdgnbyxxujmufieic.supabase.co"
+sb_storage_url = f"{sb_url}/storage/v1"
+sb_storage_headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}"}
 
+# Config
 api = FastAPI()
-sb = create_supabase(env.sb_url, env.sb_key)
+sb = create_supabase(sb_url, sb_key)
 bucket = create_bucket(
-    env.sb_storage_url, env.sb_storage_headers, is_async=False
+    sb_storage_url, sb_storage_headers, is_async=False
 ).from_("songs")
 
 api.add_middleware(
