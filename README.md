@@ -1,11 +1,4 @@
 # Como rodar
 
-Instalar o poetry
-https://python-poetry.org/docs/
-
-Entrar na pasta do repositorio  
-rodar poetry install
-
-rodar
-uvicorn src.main:api --reload
-
+pip install -r requirements.txt  
+python3 ./src/main.py 
