@@ -16,9 +16,9 @@ sb_storage_headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}"}
 # Config
 api = FastAPI()
 sb = create_supabase(sb_url, sb_key)
-bucket = create_bucket(
-    sb_storage_url, sb_storage_headers, is_async=False
-).from_("songs")
+bucket = create_bucket(sb_storage_url, sb_storage_headers, is_async=False).from_(
+    "songs"
+)
 
 api.add_middleware(
     CORSMiddleware,
@@ -41,8 +41,8 @@ def get_song(song_name: str) -> Dict[str, Any]:
     return res["data"][0]
 
 
-@api.get("/mp3_by_song_name/{song_name}")
-def get_mp3_by_song_name(song_name: str) -> str:
+@api.get("/song_public_url/{song_name}")
+def get_song_public_url(song_name: str) -> str:
     res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
     path = res["data"][0]["path"]
     return bucket.get_public_url(path)
@@ -117,16 +117,25 @@ def update_album(album_name: str, new_album_name: str):
 @api.post("/song")
 def upload_song(path: str):
     mp3 = eyed3.load(path)
+    mp3_path = f"{mp3.tag.title}.mp3"
+    res = ""
+
+    try:
+        res = bucket.upload(mp3_path, path)
+    except Exception:
+        raise HTTPException(404, f"Failed to upload {mp3_path}")
+
+    public_url = str(res.url).replace("object/songs","object/public/songs")
+
     song: dict = {
-        "path": f"{mp3.tag.title}.mp3",
+        "path": mp3_path,
         "title": mp3.tag.title,
         "artist": mp3.tag.artist,
         "album": mp3.tag.album,
+        "duration": mp3.info.time_secs,
+        "public_url": public_url,
     }
-    try:
-        bucket.upload(song["path"], path)
-    except Exception:
-        raise HTTPException(404, f"Failed to upload {song['path']}")
+
     try:
         res = dict(sb.table("Songs").insert(song).execute())
         return res["data"][0]
