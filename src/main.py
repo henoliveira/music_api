@@ -91,6 +91,16 @@ def update_song(
     )
     return res["data"][0]
 
+@api.patch("/like/{song_name}")
+def update_liked_status(song_name: str):
+    res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
+    res = dict(
+        sb.table("Songs")
+        .update({"liked": not res['data'][0]['liked']})
+        .eq('title', song_name)
+        .execute()
+    )
+    return res["data"][0]
 
 @api.patch("/artist")
 def update_artist(artist_name: str, new_artist_name: str):
