@@ -55,10 +55,10 @@ def get_albums() -> List[str]:
 
 @api.patch("/song", tags=["Songs"])
 def update_song(
-    name: str, new_name: str = None, new_artist: str = None, new_album: str = None
+    id: str, new_name: str = None, new_artist: str = None, new_album: str = None
 ):
     res = dict(
-        sb.table("Songs").select("*").eq("title", name).execute(),
+        sb.table("Songs").select("*").eq("id", id).execute(),
     )
     song_data = res["data"][0]
     data_to_update = {
@@ -70,7 +70,7 @@ def update_song(
     if new_name:
         bucket.move(song_data["path"], f"{new_name}.mp3")
     res = dict(
-        sb.table("Songs").update(data_to_update).eq("title", name).execute(),
+        sb.table("Songs").update(data_to_update).eq("id", id).execute(),
     )
     return res["data"][0]
 
