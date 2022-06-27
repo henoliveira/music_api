@@ -31,52 +31,35 @@ api.add_middleware(
 
 @api.get("/song", tags=["Songs"])
 def get_songs() -> Dict[str, Any]:
-    res = dict(sb.table("Songs").select("*").execute())
+    res = dict(
+        sb.table("Songs").select("*").execute(),
+    )
     return res["data"]
-
-
-# @api.get("/song/{name}", tags=["Songs"])
-# def get_song(name: str) -> Dict[str, Any]:
-#     res = dict(sb.table("Songs").select("*").eq("title", name).execute())
-#     return res["data"][0]
-
-
-# @api.get("/song_public_url/{name}", tags=["Songs"])
-# def get_song_public_url(name: str) -> str:
-#     res = dict(sb.table("Songs").select("*").eq("title", name).execute())
-#     path = res["data"][0]["path"]
-#     return bucket.get_public_url(path)
 
 
 @api.get("/artist", tags=["Artists"])
 def get_artists() -> List[str]:
-    res = dict(sb.table("Songs").select("artist").execute())
+    res = dict(
+        sb.table("Songs").select("artist").execute(),
+    )
     return list(dict.fromkeys(map(lambda item: item["artist"], res["data"])))
-
-
-# @api.get("/songs_by_artist/{name}", tags=["Songs"])
-# def get_songs_by_artist(name: str) -> Dict[str, Any]:
-#     res = dict(sb.table("Songs").select("*").eq("artist", name).execute())
-#     return res["data"]
 
 
 @api.get("/album", tags=["Albums"])
 def get_albums() -> List[str]:
-    res = dict(sb.table("Songs").select("album").execute())
+    res = dict(
+        sb.table("Songs").select("album").execute(),
+    )
     return list(dict.fromkeys(map(lambda item: item["album"], res["data"])))
-
-
-# @api.get("/songs_by_album/{name}", tags=["Songs"])
-# def get_songs_by_album(name: str) -> Dict[str, Any]:
-#     res = dict(sb.table("Songs").select("*").eq("album", name).execute())
-#     return res["data"]
 
 
 @api.patch("/song", tags=["Songs"])
 def update_song(
     name: str, new_name: str = None, new_artist: str = None, new_album: str = None
 ):
-    res = dict(sb.table("Songs").select("*").eq("title", name).execute())
+    res = dict(
+        sb.table("Songs").select("*").eq("title", name).execute(),
+    )
     song_data = res["data"][0]
     data_to_update = {
         "path": f"{new_name}.mp3" if new_name else song_data["path"],
@@ -86,13 +69,17 @@ def update_song(
     }
     if new_name:
         bucket.move(song_data["path"], f"{new_name}.mp3")
-    res = dict(sb.table("Songs").update(data_to_update).eq("title", name).execute())
+    res = dict(
+        sb.table("Songs").update(data_to_update).eq("title", name).execute(),
+    )
     return res["data"][0]
 
 
 @api.patch("/song/{name}/like", tags=["Songs"])
 def update_liked_status(name: str):
-    res = dict(sb.table("Songs").select("*").eq("title", name).execute())
+    res = dict(
+        sb.table("Songs").select("*").eq("title", name).execute(),
+    )
     res = dict(
         sb.table("Songs")
         .update({"liked": not res["data"][0]["liked"]})
@@ -150,13 +137,17 @@ def upload_song(path: str):
 @api.delete("/song", tags=["Songs"])
 def delete_song(name: str):
     bucket.remove([f"{name}.mp3"])
-    res = dict(sb.table("Songs").delete().eq("title", name).execute())
+    res = dict(
+        sb.table("Songs").delete().eq("title", name).execute(),
+    )
     return res["data"][0]
 
 
 @api.post("/playlist", tags=["Playlists"])
 def create_playlist(name: str):
-    res = dict(sb.table("Playlists").insert({"name": name}).execute())
+    res = dict(
+        sb.table("Playlists").insert({"name": name}).execute(),
+    )
     return res["data"][0]
 
 
@@ -170,12 +161,19 @@ def get_playlists():
 
 @api.delete("/playlist", tags=["Playlists"])
 def delete_playlist(id: str):
-    pass
+    sb.table("PlaylistSong").delete().eq("playlist_id", id).execute()
+    res = dict(
+        sb.table("Playlists").delete().eq("id", id).execute(),
+    )
+    return res["data"][0]
 
 
 @api.patch("/playlist", tags=["Playlists"])
-def update_playlist(id: str):
-    pass
+def update_playlist_name(id: str, new_name: str):
+    res = dict(
+        sb.table("Playlists").update({"name": new_name}).eq("id", id).execute(),
+    )
+    return res["data"][0]
 
 
 @api.patch("/playlist/{playlist_id}/add_song", tags=["Playlists"])
