@@ -29,21 +29,21 @@ api.add_middleware(
 )
 
 
-@api.get("/songs")
+@api.get("/song", tags=["Songs"])
 def get_songs() -> Dict[str, Any]:
     res = dict(sb.table("Songs").select("*").execute())
     return res["data"]
 
 
-@api.get("/song/{song_name}")
-def get_song(song_name: str) -> Dict[str, Any]:
-    res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
+@api.get("/song/{name}", tags=["Songs"])
+def get_song(name: str) -> Dict[str, Any]:
+    res = dict(sb.table("Songs").select("*").eq("title", name).execute())
     return res["data"][0]
 
 
-@api.get("/song_public_url/{song_name}")
-def get_song_public_url(song_name: str) -> str:
-    res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
+@api.get("/song_public_url/{name}", tags=["Songs"])
+def get_song_public_url(name: str) -> str:
+    res = dict(sb.table("Songs").select("*").eq("title", name).execute())
     path = res["data"][0]["path"]
     return bucket.get_public_url(path)
 
@@ -54,9 +54,9 @@ def get_artists() -> List[str]:
     return list(dict.fromkeys(map(lambda item: item["artist"], res["data"])))
 
 
-@api.get("/songs_by_artist/{artist_name}")
-def get_songs_by_artist(artist_name: str) -> Dict[str, Any]:
-    res = dict(sb.table("Songs").select("*").eq("artist", artist_name).execute())
+@api.get("/songs_by_artist/{name}", tags=["Songs"])
+def get_songs_by_artist(name: str) -> Dict[str, Any]:
+    res = dict(sb.table("Songs").select("*").eq("artist", name).execute())
     return res["data"]
 
 
@@ -66,17 +66,17 @@ def get_albums() -> List[str]:
     return list(dict.fromkeys(map(lambda item: item["album"], res["data"])))
 
 
-@api.get("/songs_by_album/{album_name}")
-def get_songs_by_album(album_name: str) -> Dict[str, Any]:
-    res = dict(sb.table("Songs").select("*").eq("album", album_name).execute())
+@api.get("/songs_by_album/{name}", tags=["Songs"])
+def get_songs_by_album(name: str) -> Dict[str, Any]:
+    res = dict(sb.table("Songs").select("*").eq("album", name).execute())
     return res["data"]
 
 
-@api.patch("/song")
+@api.patch("/song", tags=["Songs"])
 def update_song(
-    song_name: str, new_name: str = None, new_artist: str = None, new_album: str = None
+    name: str, new_name: str = None, new_artist: str = None, new_album: str = None
 ):
-    res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
+    res = dict(sb.table("Songs").select("*").eq("title", name).execute())
     song_data = res["data"][0]
     data_to_update = {
         "path": f"{new_name}.mp3" if new_name else song_data["path"],
@@ -87,44 +87,46 @@ def update_song(
     if new_name:
         bucket.move(song_data["path"], f"{new_name}.mp3")
     res = dict(
-        sb.table("Songs").update(data_to_update).eq("title", song_name).execute()
+        sb.table("Songs").update(data_to_update).eq("title", name).execute()
     )
     return res["data"][0]
 
-@api.patch("/like/{song_name}")
+
+@api.patch("/like")
 def update_liked_status(song_name: str):
     res = dict(sb.table("Songs").select("*").eq("title", song_name).execute())
     res = dict(
         sb.table("Songs")
-        .update({"liked": not res['data'][0]['liked']})
-        .eq('title', song_name)
+        .update({"liked": not res["data"][0]["liked"]})
+        .eq("title", song_name)
         .execute()
     )
     return res["data"][0]
 
+
 @api.patch("/artist")
-def update_artist(artist_name: str, new_artist_name: str):
+def update_artist(name: str, new_name: str):
     res = dict(
         sb.table("Songs")
-        .update({"artist": new_artist_name})
-        .eq("artist", artist_name)
+        .update({"artist": new_name})
+        .eq("artist", name)
         .execute()
     )
     return res["data"][0]
 
 
 @api.patch("/album")
-def update_album(album_name: str, new_album_name: str):
+def update_album(name: str, new_name: str):
     res = dict(
         sb.table("Songs")
-        .update({"album": new_album_name})
-        .eq("album", album_name)
+        .update({"album": new_name})
+        .eq("album", name)
         .execute()
     )
     return res["data"][0]
 
 
-@api.post("/song")
+@api.post("/song", tags=["Songs"])
 def upload_song(path: str):
     mp3 = eyed3.load(path)
     mp3_path = f"{mp3.tag.title}.mp3"
@@ -135,7 +137,7 @@ def upload_song(path: str):
     except Exception:
         raise HTTPException(404, f"Failed to upload {mp3_path}")
 
-    public_url = str(res.url).replace("object/songs","object/public/songs")
+    public_url = str(res.url).replace("object/songs", "object/public/songs")
 
     song: dict = {
         "path": mp3_path,
@@ -153,12 +155,37 @@ def upload_song(path: str):
         raise HTTPException(201, f"Uploaded {song['path']} in database")
 
 
-@api.delete("/song/{song_name}")
-def delete_song(song_name: str):
-    bucket.remove([f"{song_name}.mp3"])
-    res = dict(sb.table("Songs").delete().eq("title", song_name).execute())
+@api.delete("/song", tags=["Songs"])
+def delete_song(name: str):
+    bucket.remove([f"{name}.mp3"])
+    res = dict(sb.table("Songs").delete().eq("title", name).execute())
     return res["data"][0]
 
 
+@api.post("/playlist", tags=["Playlists"])
+def create_playlist():
+    pass
+
+
+@api.get("/playlist", tags=["Playlists"])
+def get_playlists():
+    pass
+
+
+@api.get("/playlist/{id}", tags=["Playlists"])
+def get_playlist(playlist_name: str):
+    pass
+
+
+@api.patch("/playlist", tags=["Playlists"])
+def update_playlist(id: str):
+    pass
+
+
+@api.delete("/playlist", tags=["Playlists"])
+def delete_playlist(id: str):
+    pass
+
+
 if __name__ == "__main__":
-    uvicorn.run(api, host="0.0.0.0", port=8000)
+    uvicorn.run("__main__:api", host="0.0.0.0", port=8000, reload=True)
