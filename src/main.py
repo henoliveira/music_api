@@ -57,35 +57,36 @@ def get_albums() -> List[str]:
 
 @api.patch("/song", tags=["Songs"])
 def update_song(
-    id: str, new_name: str = None, new_artist: str = None, new_album: str = None
+    song_id: str,
+    new_name: str = None,
+    new_artist: str = None,
+    new_album: str = None,
 ):
     res = dict(
-        sb.table("Songs").select("*").eq("id", id).execute(),
+        sb.table("Songs").select("*").eq("id", song_id).execute(),
     )
     song_data = res["data"][0]
     data_to_update = {
-        "path": f"{new_name}.mp3" if new_name else song_data["path"],
         "title": new_name or song_data["title"],
         "artist": new_artist or song_data["artist"],
         "album": new_album or song_data["album"],
     }
-    if new_name:
-        bucket.move(song_data["path"], f"{new_name}.mp3")
     res = dict(
-        sb.table("Songs").update(data_to_update).eq("id", id).execute(),
+        sb.table("Songs").update(data_to_update).eq("id", song_id).execute(),
     )
     return res["data"][0]
 
 
-@api.patch("/song/{name}/like", tags=["Songs"])
-def update_liked_status(name: str):
+@api.patch("/song/{song_id}/like", tags=["Songs"])
+def update_liked_status(song_id: str):
     res = dict(
-        sb.table("Songs").select("*").eq("title", name).execute(),
+        sb.table("Songs").select("*").eq("id", song_id).execute(),
     )
+    is_liked = res["data"][0]["liked"]
     res = dict(
         sb.table("Songs")
-        .update({"liked": not res["data"][0]["liked"]})
-        .eq("title", name)
+        .update({"liked": not is_liked})
+        .eq("id", song_id)
         .execute()
     )
     return res["data"][0]
@@ -206,4 +207,9 @@ def add_song_to_playlist(playlist_id: str, song_id: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run("__main__:api", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(
+        "__main__:api",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+    )
