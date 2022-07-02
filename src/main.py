@@ -110,27 +110,27 @@ def update_album(name: str, new_name: str):
 
 @api.post("/song", tags=["Songs"])
 async def upload_song(file: UploadFile):
-    song_id = f"{uuid4()}.mp3"
+    song_id = f"{uuid4()}"
     binary = await file.read()
-    song_path = f"{os.getcwd()}/{file.filename}"
+    file_path = f"{os.getcwd()}/{file.filename}"
 
-    with open(song_path, "wb") as song:
+    with open(file_path, "wb") as song:
         song.write(binary)
         song.close()
 
     try:
-        res = bucket.upload(song_id, song_path)
+        res = bucket.upload(song_id, file_path)
     except Exception as e:
         print(e)
         raise HTTPException(404, f"Failed to upload {file.filename}")
 
     public_url = str(res.url).replace("object/songs", "object/public/songs")
 
-    mp3 = eyed3.load(song_path)
-    os.remove(song_path)
+    mp3 = eyed3.load(file_path)
+    os.remove(file_path)
 
     song_dict: dict = {
-        "path": song_id,
+        "id": song_id,
         "title": mp3.tag.title,
         "artist": mp3.tag.artist,
         "album": mp3.tag.album,
@@ -142,16 +142,16 @@ async def upload_song(file: UploadFile):
         res = dict(sb.table("Songs").insert(song_dict).execute())
         return res["data"][0]
     except Exception:
-        raise HTTPException(201, f"Uploaded {song_dict['path']} in database")
+        raise HTTPException(201, f"Uploaded {song_dict['title']} in database")
 
 
 @api.delete("/song", tags=["Songs"])
-def delete_song(song_path: str):
+def delete_song(song_id: str):
     res = dict(
-        sb.table("Songs").select("*").eq("path", song_path).execute(),
+        sb.table("Songs").select("*").eq("id", song_id).execute(),
     )
     song_title = res["data"][0]["title"]
-    bucket.remove([f"{song_path}"])
+    bucket.remove([f"{song_id}"])
     res = dict(
         sb.table("Songs").delete().eq("title", song_title).execute(),
     )
