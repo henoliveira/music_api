@@ -1,8 +1,10 @@
 import eyed3
 import uvicorn
+import os
 
+from uuid import uuid4
 from typing import Dict, List, Any
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client as create_supabase
 from storage3 import create_client as create_bucket
@@ -106,20 +108,28 @@ def update_album(name: str, new_name: str):
 
 
 @api.post("/song", tags=["Songs"])
-def upload_song(path: str):
-    mp3 = eyed3.load(path)
-    mp3_path = f"{mp3.tag.title}.mp3"
-    res = ""
+async def upload_song(file: UploadFile):
+    song_id = f"{uuid4()}.mp3"
+    binary = await file.read()
+    song_path = f"{os.getcwd()}/{file.filename}"
+
+    with open(song_path, "wb") as song:
+        song.write(binary)
+        song.close()
 
     try:
-        res = bucket.upload(mp3_path, path)
-    except Exception:
-        raise HTTPException(404, f"Failed to upload {mp3_path}")
+        res = bucket.upload(song_id, song_path)
+    except Exception as e:
+        print(e)
+        raise HTTPException(404, f"Failed to upload {file.filename}")
 
     public_url = str(res.url).replace("object/songs", "object/public/songs")
 
-    song: dict = {
-        "path": mp3_path,
+    mp3 = eyed3.load(song_path)
+    os.remove(song_path)
+
+    song_dict: dict = {
+        "path": song_id,
         "title": mp3.tag.title,
         "artist": mp3.tag.artist,
         "album": mp3.tag.album,
@@ -128,17 +138,21 @@ def upload_song(path: str):
     }
 
     try:
-        res = dict(sb.table("Songs").insert(song).execute())
+        res = dict(sb.table("Songs").insert(song_dict).execute())
         return res["data"][0]
     except Exception:
-        raise HTTPException(201, f"Uploaded {song['path']} in database")
+        raise HTTPException(201, f"Uploaded {song_dict['path']} in database")
 
 
 @api.delete("/song", tags=["Songs"])
-def delete_song(name: str):
-    bucket.remove([f"{name}.mp3"])
+def delete_song(song_path: str):
     res = dict(
-        sb.table("Songs").delete().eq("title", name).execute(),
+        sb.table("Songs").select("*").eq("path", song_path).execute(),
+    )
+    song_title = res["data"][0]["title"]
+    bucket.remove([f"{song_path}"])
+    res = dict(
+        sb.table("Songs").delete().eq("title", song_title).execute(),
     )
     return res["data"][0]
 
