@@ -1,0 +1,577 @@
+{
+  "id": "684a1cfa-98b9-41c2-b33f-25e83ab44df5",
+  "version": "2.0",
+  "name": "music_player",
+  "url": "http://localhost:3000/",
+  "tests": [{
+    "id": "127323c8-4585-4c8b-9b14-288b7f2673b3",
+    "name": "botoes de controle",
+    "commands": [{
+      "id": "291b53de-2a4f-4dc5-9ff9-0ab6aa481cb5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "126c06c9-d5ab-4372-8d67-7d6dd136df0c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "03da5128-14d0-4ba0-aef9-8e004fdd4408",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_pp__25mP4 > path",
+      "targets": [
+        ["css=.player_pp__25mP4 > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6764a80-d6fb-47c1-bdc3-6a575b4fb4d1",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": "113.27276611328125,3.33807373046875"
+    }, {
+      "id": "8000ee79-f560-4f5f-a0a1-c0d7b37b611a",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": "113.27276611328125,3.33807373046875"
+    }, {
+      "id": "59bd8fa7-4333-4f97-82b7-80486ce94211",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": "113.27276611328125,3.33807373046875"
+    }, {
+      "id": "2a396d1f-05d9-4e78-a4f8-dc9bf1e9de01",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3cf7666-4aaa-4e8b-a7a4-0c405a48ace8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42b6744a-6960-41dd-b833-dcb2d378d253",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_btn_action__a8BpI:nth-child(3) > path",
+      "targets": [
+        ["css=.player_btn_action__a8BpI:nth-child(3) > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b338a10-509b-4501-b57f-34aa61238088",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f943ba67-e9fe-491c-866b-81123a38a7d6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_pp__25mP4 > path",
+      "targets": [
+        ["css=.player_pp__25mP4 > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f676bed-c908-4064-8abd-e00e55989b6b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_btn_action__a8BpI:nth-child(1) > path",
+      "targets": [
+        ["css=.player_btn_action__a8BpI:nth-child(1) > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cd451d4-3170-4475-9d1a-3adbe77fc9ca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_btn_action__a8BpI:nth-child(1) > path",
+      "targets": [
+        ["css=.player_btn_action__a8BpI:nth-child(1) > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4c22e93-d814-477c-91fc-a886edd176d3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_pp__25mP4",
+      "targets": [
+        ["css=.player_pp__25mP4", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "77d4ec9c-baa0-4fdc-96da-7235a3a99ae0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "51830c49-670e-47c3-b88b-0977dc3ae165",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2ccbb54-f368-4a11-9c02-7bc7ad8b8f7d",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "19293c0d-12f8-4373-8b52-3bc21e11d2dc",
+    "name": "Navegar albuns e artistas",
+    "commands": [{
+      "id": "2a685c43-bcf7-443d-a3f8-76b5f5dd80d4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c7b705ed-6622-4255-a803-6fe79e32e46e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f7f9f9a2-c82c-414e-b84c-7b0464be700d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.footer_footerItem__O2kZg:nth-child(2)",
+      "targets": [
+        ["css=.footer_footerItem__O2kZg:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4db0a365-c82e-4624-985d-8de7c5aca864",
+      "comment": "",
+      "command": "click",
+      "target": "css=.albums_albumsItem__m0qv0:nth-child(1)",
+      "targets": [
+        ["css=.albums_albumsItem__m0qv0:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Hotel Diablo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbcf4f81-37fa-45ae-8952-37186a23a38b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.albums_albumsItem__m0qv0:nth-child(1)",
+      "targets": [
+        ["css=.albums_albumsItem__m0qv0:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31f1f729-55c5-47bb-86d4-a0fcbf79c3de",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_pp__25mP4",
+      "targets": [
+        ["css=.player_pp__25mP4", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "8898f60e-afde-492a-ad38-061e092a653b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad52ad9c-36d3-424d-a6a8-f545a199f58a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8557581d-1a96-45ad-91b7-873c233006b3",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8737136d-174c-4237-b38c-257c1f9bb495",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5eea31bd-57a1-4016-a4c8-24fc4d84a448",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_seek_bar__QeF7m",
+      "targets": [
+        ["css=.player_seek_bar__QeF7m", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad385d2b-7169-4514-9117-19a3625dacaf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.header_returnButton__2WGgd",
+      "targets": [
+        ["css=.header_returnButton__2WGgd", "css:finder"],
+        ["xpath=//img[@alt='back']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div/div/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39d2aecf-9283-42d6-a833-786de49df4c9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.footer_footerItem__O2kZg:nth-child(4) > img",
+      "targets": [
+        ["css=.footer_footerItem__O2kZg:nth-child(4) > img", "css:finder"],
+        ["xpath=//img[@title='artists']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div[4]/img", "xpath:idRelative"],
+        ["xpath=//div[4]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0d60812-69dd-4aaf-abdc-4aaa43a1e44b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.artists_artistsItem__m7oHo:nth-child(1)",
+      "targets": [
+        ["css=.artists_artistsItem__m7oHo:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Machine Gun Kelly')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5edcbed-9223-4969-836f-82b44af921a6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.artists_artistsItem__m7oHo:nth-child(2)",
+      "targets": [
+        ["css=.artists_artistsItem__m7oHo:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'5:3666 (feat. Phem)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "664abf41-1b29-443b-b23f-66aeb6ddc475",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70a9d07c-8649-4c1b-975a-726a750f803e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.header_returnButton__2WGgd",
+      "targets": [
+        ["css=.header_returnButton__2WGgd", "css:finder"],
+        ["xpath=//img[@alt='back']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div/div/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9365001c-f368-41a0-a5cd-37049c39535f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.artists_artistsItem__m7oHo:nth-child(3)",
+      "targets": [
+        ["css=.artists_artistsItem__m7oHo:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li[3]", "xpath:idRelative"],
+        ["xpath=//li[3]", "xpath:position"],
+        ["xpath=//li[contains(.,'Pink Floyd')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1382900-f566-48de-a10a-b88dcd18b52d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.artists_artistsItem__m7oHo:nth-child(6)",
+      "targets": [
+        ["css=.artists_artistsItem__m7oHo:nth-child(6)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li[6]", "xpath:idRelative"],
+        ["xpath=//li[6]", "xpath:position"],
+        ["xpath=//li[contains(.,'Money')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4e06aed-a41a-4d1b-9cfe-0d17788813fc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7c77223-87be-4238-9a65-43b686b8a79b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcf8a45f-a0f3-47b3-8cf9-e167d0acd74c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "08a865cb-d899-4e15-ba90-70a1ee887a2f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ae8d289-8016-4d7c-81fe-ec5148583c23",
+      "comment": "",
+      "command": "click",
+      "target": "css=.footer_footerItem__O2kZg:nth-child(5) > img",
+      "targets": [
+        ["css=.footer_footerItem__O2kZg:nth-child(5) > img", "css:finder"],
+        ["xpath=//img[@title='playlists']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div[5]/img", "xpath:idRelative"],
+        ["xpath=//div[5]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea61c6e1-b678-4460-ba01-3f832cdae0e6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.playlists_playlistsItem__5vuIP:nth-child(1)",
+      "targets": [
+        ["css=.playlists_playlistsItem__5vuIP:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Favoritas')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b53847e5-a6e2-4544-9ce0-3c18a926dea0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.playlists_playlistsItem__5vuIP:nth-child(1)",
+      "targets": [
+        ["css=.playlists_playlistsItem__5vuIP:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li", "xpath:idRelative"],
+        ["xpath=//li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbbabb37-af53-41a4-8db5-612ac581b88e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2db611e-f113-4b30-8a5f-5a727efa4d7f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7917a89-70b8-420d-b9e0-cf52ef9d3fb6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation__4JxnV",
+      "targets": [
+        ["css=.player_navigation__4JxnV", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a42918ae-eda9-4615-a4ff-bf88476db4c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7812b5c-81c3-4df0-996f-3125f267b85b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.playlists_playlistsItem__5vuIP:nth-child(3)",
+      "targets": [
+        ["css=.playlists_playlistsItem__5vuIP:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/ul/li[3]", "xpath:idRelative"],
+        ["xpath=//li[3]", "xpath:position"],
+        ["xpath=//li[contains(.,'Money')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4644b6c3-5be0-4bbc-bea0-7984b9a0e3fc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_navigation_wrapper__f8eUA",
+      "targets": [
+        ["css=.player_navigation_wrapper__f8eUA", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d832ecaf-379d-45ca-9d4c-b9c1d2fbaf3b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_seek_bar__QeF7m",
+      "targets": [
+        ["css=.player_seek_bar__QeF7m", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "48d385b7-8b06-4bd5-91ea-ec499424fe3e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.player_pp__25mP4 > path",
+      "targets": [
+        ["css=.player_pp__25mP4 > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfc49339-763a-448c-825a-647a7afc2288",
+      "comment": "",
+      "command": "click",
+      "target": "css=.footer_footerItem__O2kZg:nth-child(4) > img",
+      "targets": [
+        ["css=.footer_footerItem__O2kZg:nth-child(4) > img", "css:finder"],
+        ["xpath=//img[@title='artists']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[3]/div[2]/div[4]/img", "xpath:idRelative"],
+        ["xpath=//div[4]/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "dec52403-f17b-48f6-80b6-aeac7bb18143",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}
