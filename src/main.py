@@ -84,10 +84,7 @@ def update_liked_status(song_id: str):
     )
     is_liked = res["data"][0]["liked"]
     res = dict(
-        sb.table("Songs")
-        .update({"liked": not is_liked})
-        .eq("id", song_id)
-        .execute()
+        sb.table("Songs").update({"liked": not is_liked}).eq("id", song_id).execute()
     )
     return res["data"][0]
 
