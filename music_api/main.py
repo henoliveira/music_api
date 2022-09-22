@@ -5,13 +5,14 @@ import os
 from uuid import uuid4
 from typing import Dict, List, Any
 from fastapi import FastAPI, HTTPException, UploadFile
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client as create_supabase
 from storage3 import create_client as create_bucket
 
 # Env
-sb_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnbWpkZ25ieXh4dWptdWZpZWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTUyNDUyMTEsImV4cCI6MTk3MDgyMTIxMX0.buDTTbi9zcsYrCIhKHv3_DcF7hO3AwCwqhDsfp66ozQ"
-sb_url = "https://rgmjdgnbyxxujmufieic.supabase.co"
+sb_key = str(os.environ.get("SUPABASE_KEY"))
+sb_url = str(os.environ.get("SUPABASE_URL"))
 sb_storage_url = f"{sb_url}/storage/v1"
 sb_storage_headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}"}
 
@@ -29,6 +30,11 @@ api.add_middleware(
     allow_headers=["*"],
     allow_credentials=True,
 )
+
+
+@api.get("/", include_in_schema=False)
+def home() -> RedirectResponse:
+    return RedirectResponse("/docs")
 
 
 @api.get("/song", tags=["Songs"])
@@ -203,9 +209,9 @@ def add_song_to_playlist(playlist_id: str, song_id: str):
     return res["data"][0]
 
 
-if __name__ == "__main__":
+def run():
     uvicorn.run(
-        "__main__:api",
+        "music_api.main:api",
         host="0.0.0.0",
         port=8000,
         reload=True,
